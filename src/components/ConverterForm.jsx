@@ -6,6 +6,7 @@ const ConverterForm = () => {
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('MYR');
   const [result, setResult] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   // Swap the values of fromCurrency and toCurrency
   const handleSwapCurrency = () => {
@@ -18,6 +19,8 @@ const ConverterForm = () => {
     const API_KEY = import.meta.env.VITE_API_KEY;
     const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${fromCurrency}/${toCurrency}`;
 
+    setIsLoading(true);
+
     try {
       const response = await fetch(API_URL);
       if (!response.ok) throw Error('Something went wrong!');
@@ -27,6 +30,8 @@ const ConverterForm = () => {
       setResult(`${amount} ${fromCurrency} = ${rate} ${toCurrency}`);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -81,10 +86,15 @@ const ConverterForm = () => {
           />
         </div>
       </div>
-      <button type='submit' className='submit-button'>
+      <button
+        type='submit'
+        className={`${isLoading ? 'loading' : ''} submit-button`}
+      >
         Get Exchange Rate
       </button>
-      <p className='exchange-rate-result'>{result}</p>
+      <p className='exchange-rate-result'>
+        {isLoading ? 'Calculating rates...' : result}
+      </p>
     </form>
   );
 };
