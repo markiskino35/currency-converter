@@ -37,6 +37,14 @@ body {
   text-align: center;
 }
 
+.currency-converter .converter-description {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 100;
+  text-align: center;
+  padding-top: 2px;
+}
+
 .currency-converter .converter-form {
   margin-top: 45px;
 }
