@@ -41,7 +41,9 @@ const ConverterForm = () => {
   };
 
   // Fetch exchange rate on initial render
-  useEffect(() => getExchangeRate, []);
+  useEffect(() => {
+    getExchangeRate();
+  }, []);
 
   return (
     <form className='converter-form' onSubmit={handleFormSubmit}>
