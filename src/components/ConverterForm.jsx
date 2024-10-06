@@ -92,18 +92,18 @@ const ConverterForm = () => {
       >
         Get Exchange Rate
       </button>
-      <p className='exchange-rate-result'>
+      <div className='exchange-rate-result'>
         <span className='loading-result'>
           {isLoading && (
-            <div class='loader'>
-              <span class='bar'></span>
-              <span class='bar'></span>
-              <span class='bar'></span>
+            <div className='loader'>
+              <span className='bar'></span>
+              <span className='bar'></span>
+              <span className='bar'></span>
             </div>
           )}
           {isLoading ? 'Calculating Rates...' : result}
         </span>
-      </p>
+      </div>
     </form>
   );
 };
